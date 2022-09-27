@@ -2,6 +2,8 @@ package org.example;
 
 public class Aritmetica {
 
+    private CalculadoraAppService calculadoraAppService;
+
 
     public int sumar(int a, int b) {
         return a + b;
@@ -26,8 +28,13 @@ public class Aritmetica {
         return a % b;
     }
 
-    public int potencia(int a, int b) {
-        return (int) Math.pow(a, b);
-    }
 
+
+    public int potencia(String usuario,String password, int base, int exponente) throws Exception {
+        boolean login = calculadoraAppService.login(usuario, password);
+        if (!login) {
+            throw new Exception("Usuario o contraseña incorrectos");
+        }
+        return calculadoraAppService.potencia(base, exponente);
+    }
 }
